@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'localflavor',
+    'crispy_forms',  # For better form rendering
+    'crispy_bootstrap5',  # Bootstrap 5 support for crispy forms
     'main',  # Custom app for the project
     'users',  # Custom app for user management
 ]
@@ -102,6 +104,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOGIN_REDIRECT_URL = "home/"  # Redirect to home after login
+LOGIN_URL = "login/"
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
@@ -133,3 +137,6 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Crispy Forms settings 
+CRISPY_TEMPLATE_PACK = 'bootstrap5'  # Use Bootstrap 5 for crispy forms
