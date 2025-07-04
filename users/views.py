@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.views import View
-
+from django.contrib.auth.decorators import login_required
 
 def login_view(request):
 
@@ -30,10 +30,16 @@ def login_view(request):
     return render(request, 'users/login.html', {"login_form": login_form})
 
 
+@login_required
+def logout_view(request):
+    logout(request)
+    return redirect('main')
 
 # def register_vieww(request):
 #     register_form = UserCreationForm()
 #     return render(request, 'views/register.html',{"register_form": register_form})
+
+
 
 class RegisterView(View):
 
@@ -53,3 +59,6 @@ class RegisterView(View):
         else:
             messages.error(request, "Registration failed. Please correct the errors below.")
             return render(request, 'views/register.html', {"register_form": register_form})
+
+
+
